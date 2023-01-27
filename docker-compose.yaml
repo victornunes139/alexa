@@ -1,0 +1,34 @@
+version: "3.6"
+
+services:
+  # api
+  dk_alexa:
+    image: webdevops/php-nginx-dev:8.0
+    restart: always
+    container_name: alexa
+    networks:
+      - internal
+    working_dir: /var/www/app
+    volumes:
+      - ./:/var/www/app
+    environment:
+      - WEB_DOCUMENT_ROOT=/var/www/app
+      - WEB_DOCUMENT_INDEX=index.php
+      - XDEBUG_MODE=debug # ,profile,coverage ,develop,trace,gcstats
+      - XDEBUG_IDE_KEY=XDEBUG_ECLIPSE
+      - XDEBUG_CLIENT_HOST=host.docker.internal
+      - XDEBUG_REMOTE_CONNECT_BACK=1
+      - PHP_DATE_TIMEZONE=UTC
+      - PHP_DISPLAY_ERRORS=1
+      - PHP_MEMORY_LIMIT=2048M
+      - PHP_MAX_EXECUTION_TIME=86400
+      - PHP_POST_MAX_SIZE=500M
+      - PHP_UPLOAD_MAX_FILESIZE=500M
+      # - WEB_PHP_TIMEOUT=1440000
+    ports:
+      - 80:80
+# Networks
+networks:
+  # Internal network
+  internal:
+    driver: bridge
