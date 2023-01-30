@@ -1,2 +1,2 @@
 <?php
-echo "Inicio do projeto alexa.";
+require_once 'Fronted/index.html';
