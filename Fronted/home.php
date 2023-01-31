@@ -19,7 +19,13 @@
         </form>
     </div>
 
+    <?php if(isset($_SESSION['success']) && $_SESSION['success']) { ?>
+      <div class="alert alert-success mt-4" role="alert">
+        This is a success alert—check it out!
+      </div>
+    <?php } ?>
 
+    
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
