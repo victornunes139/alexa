@@ -6,8 +6,6 @@ if(isset($_FILES['audio']) && is_uploaded_file($_FILES['audio']['tmp_name'])) {
     $tmp_name = $_FILES['audio']['tmp_name'];
     $name = basename($_FILES["audio"]["name"]);
 
-
-    ///Deletar um arquivo
     $files = glob('uploads/*');
     foreach($files as $file) { 
         if(is_file($file)) {
