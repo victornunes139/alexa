@@ -1,5 +1,6 @@
 <?php
-$success = null;
+include 'utils.php';
+include 'environment.php';
 
 if(isset($_FILES['audio']) && is_uploaded_file($_FILES['audio']['tmp_name'])) {
     $uploads_dir = 'uploads';
@@ -13,9 +14,21 @@ if(isset($_FILES['audio']) && is_uploaded_file($_FILES['audio']['tmp_name'])) {
         }
     }
 
-    $success = move_uploaded_file($tmp_name, "$uploads_dir/$name");
+    $success_moved = move_uploaded_file($tmp_name, "$uploads_dir/$name");
 
-    if($success) {
+    $fields = [
+        "uid" => guidv4(),
+        "updateDate" => date("Y-m-d\TH:i:s.000\Z"),
+        "titleText" => "Título da Alexa",
+        "mainText" => "MainText da Alexa",
+        "streamUrl" => "$host/uploads/musica.mp3",
+        "redirectionUrl" =>  $host
+    ];
+
+    $writed_success = file_put_contents($filename, json_encode($fields));
+
+
+    if($success_moved && $writed_success !== false) {
         $success = 'true';
     } else {
         $success = 'false';
