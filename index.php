@@ -1,10 +1,11 @@
 <?php
-session_start();
+
 $route = $_SERVER['REQUEST_URI'];
-if($route == '/rss') {
-    require_once 'Frontend/xml.php';
+
+if($route == '/json') {
+    require 'audio.json';
 } else {
-    require_once 'Fronted/home.php';
+    header('Location: home.php');
 }
 
 

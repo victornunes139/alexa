@@ -1,35 +1,25 @@
 <?php
-
-$url = 'http://localhost';
+$success = null;
 
 if(isset($_FILES['audio']) && is_uploaded_file($_FILES['audio']['tmp_name'])) {
-    $uploads_dir = '../uploads';
+    $uploads_dir = 'uploads';
     $tmp_name = $_FILES['audio']['tmp_name'];
     $name = basename($_FILES["audio"]["name"]);
 
 
     ///Deletar um arquivo
-    $files = glob('../uploads/*');
+    $files = glob('uploads/*');
     foreach($files as $file) { 
         if(is_file($file)) {
             unlink($file); 
         }
     }
 
-
     $success = move_uploaded_file($tmp_name, "$uploads_dir/$name");
 
     if($success) {
-        $_SESSION['success'] = true;
-        $_SESSION['message'] = "Envio Realizado com sucesso";
+        $success = 'true';
     } else {
-        $_SESSION['success'] = false;
-        $_SESSION['message'] = "Ocorreu um erro no envio";
+        $success = 'false';
     }
-
-    header('Location: ' . $url);
-
-
-} else {
-    header('Location: ' . $url);
-}
+} 
