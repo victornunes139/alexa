@@ -21,7 +21,7 @@ if(isset($_FILES['audio']) && is_uploaded_file($_FILES['audio']['tmp_name'])) {
         "updateDate" => date("Y-m-d\TH:i:s.000\Z"),
         "titleText" => "Título da Alexa",
         "mainText" => "MainText da Alexa",
-        "streamUrl" => "$host/uploads/musica.mp3",
+        "streamUrl" => "$host/uploads/$name",
         "redirectionUrl" =>  $host
     ];
 
